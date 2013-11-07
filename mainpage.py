@@ -254,16 +254,10 @@ class Application(tornado.web.Application):
                                       (r"/login", LoginHandler),
                                       (r"/account/login", LoginHandler),
                                       (r"/account/create", CreateAccountHandler),
-                                     # (r"/auth/login", AuthLoginHandler),
                                       (r"/auth/logout", AuthLogoutHandler),
-                                      (r"/auth/fblogin", AuthLoginFBHandler),
-                                      (r"/auth/fblogout", AuthLogoutFBHandler),
-                                      (r"/auth/twlogin", AuthLoginTWHandler),
-                                      (r"/auth/twlogout", AuthLogoutTWHandler),
                                       (r"/updateusersetting", UserSettingHandler),
-                                      #(r"/oauth2callback/([^/]+)", GoogleoAuthHandler)
-                                      (r"/calendar_oauth2callback", GoogleCalendarAuthHandler),
-                                      
+                                      (r"/resetpassword", ResetPassword),
+                                     
                                       (r"/saveexpense", ExpenseSaveHandler),
                                       (r"/getexpense", GetExpenseHandler),
                                       (r"/processexpense", ExpenseProcessHandler),
@@ -271,11 +265,25 @@ class Application(tornado.web.Application):
                                       (r"/callpaymentapi", ExpensePaymentAPIHandler),
                                       
                                       
-                                      (r"/trips", BrowseHandler),   # where you create and browse trips
-                                      (r"/trip/([^/]+)", EntryHandler),
-                                      (r"/trips/([^/]+)/([^/]+)", TripPageHandler),
-                                      (r"/like_trip", LikeTripHandler),
-                                      (r"/processtriprequest", ProcessTripRequestHandler),
+                                     
+                                      (r"/glasses/([^/]+)/([^/]+)", TripPageHandler),
+                                      (r"/dogood", DonationPageHandler),
+                                      
+                                      
+                                      (r"/like_glass", LikeTripHandler),
+                                      
+                                      (r"/addtowishlistrequest", AddToWishListRequestHandler),
+                                      (r"/saveincartrequest", SaveInCartRequestHandler),
+                                      (r"/processorderrequest", ProcessTripRequestHandler),
+                                      
+                                      
+                                      (r"/ourstory", OurStory),
+                                      (r"/blog", Blog),
+                                      (r"/about/terms", Terms),
+                                      (r"/about_us", AboutUs),
+                                      (r"/about/privacy", Privacy),
+                                      
+                                      
                                       
                                       (r"/save_trip", SaveTripHandler), #save the trip to personal save
                                       (r"/gettrips", GetTrips),
@@ -317,7 +325,7 @@ class Application(tornado.web.Application):
                                       (r"/updateuserprofile", UpdateUserProfileHandler),
                                       (r"/updatepaymentmethod", UpdatePaymentHandler),
                                       (r"/settings", SettingsHandler),
-                                      (r"/blog", Blog),
+                                      
                                       (r"/postcomment", PostCommentHandler),
                                       (r"/deletecomment", DeleteCommentHandler),
                                       (r"/postfeed", PostFeedHandler),
@@ -329,28 +337,9 @@ class Application(tornado.web.Application):
                                       (r"/sendexpenserequest", ExpenseRequestHandler),
                                       (r"/getnotificationpaymentmethod", GetPaymentMethodHandler),
                                       
-                                      (r"/confirmfriend", FriendConfirmHandler),
-                                      (r"/requestfriend", FriendRequestHandler),
-                                      (r"/removefriend", FriendRemoveHandler),
-                                      (r"/searchfriend/([^/]+)", SearchFriendHandler),
-                                      (r"/getfriends", GetFriendHandler),
-                                      (r"/gettripmembers", GetTripMemberHandler),
-                                    
-                                    
-                                      (r"/travelers/([^/]*)", TravelersHandler),
-                                      (r"/people/([^/]+)", UserHandler),
                                       
-                                      #(r"/addusertotrip/([^/]+)/([^/]+)", AddUserToTripHandler),
-                                      (r"/addusertotrip", AddUserToTripHandler),
-                                      (r"/removeuserfromtrip", RemoveUserFromTripHandler),
-                                      (r"/followpeople/([^/]+)", FollowUserHandler),
-                                      # (r"/managemember/([^/]+)"), ManageMemberHandler),
+                                    
                                       
-                                      (r"/unfollowpeople/([^/]+)", UnFollowUserHandler),
-                                      (r"/about/terms", Terms),
-                                      (r"/about_us", AboutUs),
-                                      (r"/about/privacy", Privacy),
-                                      (r"/resetpassword", ResetPassword),
                                       (r"/subscribe_trip/([^/]+)", SubscribeTrip),
                                       (r"/unsubscribe_trip/([^/]+)", UnsubscribeTrip),
                                       (r"/postmessage", PostMessageHandler),
@@ -402,9 +391,9 @@ class Application(tornado.web.Application):
                             #   host=options.mysql_host, database=options.mysql_database,
                             #   user=options.mysql_user, password=options.mysql_password)
                             #===================================================
-                            #self.db = asyncmongo.Client(pool_id='mytestdb', host='127.0.0.1', port=27017, maxcached=10, maxconnections=50, dbname='TripShare')
+                            self.db = asyncmongo.Client(pool_id='mytestdb', host='127.0.0.1', port=27017, maxcached=10, maxconnections=50, dbname='DaXi')
                             #self.syncdb = pymongo.Connection("184.169.172.137", 27017).TripShare
-                            self.syncdb = pymongo.Connection("localhost", 27017).TripShare
+                            #self.syncdb = pymongo.Connection("localhost", 27017).TripShare
                             
 def main():
     tornado.options.parse_command_line()
